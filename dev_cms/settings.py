@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ["127.0.0.1", ]
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'cms',
+    'django_ace',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,11 +88,22 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+from django.conf.global_settings import TEMPLATE_DIRS
 
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#         'gnocchi.cms.context.context_variables',
-#     ) + TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'templates'),
+)
+
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+        # 'gnocchi.cms.context.context_variables',
+        'django.core.context_processors.request',
+    )
 
 # from django.conf.global_settings import TEMPLATE_LOADERS
 
@@ -101,5 +114,42 @@ STATIC_URL = '/static/'
 
 # DEFAULT_TEMPLATE = 'default.html'
 
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Plivo CMS Admin',
+    'CONFIRM_UNSAVED_CHANGES': True,
+    #'MENU_EXCLUDE': ('auth.group', 'auth'),
+    'MENU': (
+
+        # Keep original label and models
+        'sites',
+
+        # Reorder app models
+        {'app': 'auth', 'models': ('user', 'group')},
+
+        # Custom app, with models
+        {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
+
+        # Cross-linked models with custom name; Hide default icon
+        {'label': 'Custom', 'icon':None, 'models': (
+            'auth.group',
+            {'model': 'auth.user', 'label': 'Staff'}
+        )},
+
+        # Custom app, no models (child links)
+        {'label': 'Users', 'url': 'auth.user', 'icon':'icon-user'},
+
+        # Separator
+        '-',
+
+        # Custom app and model with permissions
+        {'label': 'Secure', 'permissions': 'auth.add_user', 'models': [
+            {'label': 'custom-child', 'permissions': ('auth.add_user', 'auth.add_group')}
+        ]},
+    ),
+
+    'LIST_PER_PAGE': 20,
+
+}
 
 
