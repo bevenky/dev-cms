@@ -34,6 +34,9 @@ else:
 
 
 urlpatterns += patterns('',
+    # Admin-tools URL
+    url(r'^admin_tools/', include('admin_tools.urls')),
+
     # Admin URL
     url(r'^admin/', include(admin.site.urls)),
 

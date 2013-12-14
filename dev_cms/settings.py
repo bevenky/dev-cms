@@ -32,6 +32,11 @@ ALLOWED_HOSTS = ["127.0.0.1", ]
 INSTALLED_APPS = (
     'django_ace',
 
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -109,3 +114,10 @@ from django.conf.global_settings import TEMPLATE_LOADERS
 TEMPLATE_LOADERS = (
         'dev_cms.loader.DBTemplateLoader',
     ) + TEMPLATE_LOADERS
+
+
+# Admin-tools files
+ADMIN_TOOLS_MENU = 'menu.CMSMenu'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'dashboard.CMSIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'dashboard.CMSAppIndexDashboard'
+
