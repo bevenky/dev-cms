@@ -3,9 +3,8 @@
 
 ## User Facing Features
 
-* HTML Pages
-* Landing Pages
-* Language Localization
+* HTML Pages  - <done>
+* Landing Pages - <done>
 * Blogs with comments and sharing on social media
 * FAQ with Search
 * Contact us forms
@@ -16,27 +15,27 @@
   - Marketing Material Download
   - Landing Pages
   - Signup as a user
-  
+
 
 
 ## Admin
 
-* Content for HTML pages editable using a simple widget
-* Map URLs to Content Pages
-* Redirect URLs - 301, 302
-* Blog editing with almost no html (wordpress benchmark)
-* Media Embed 
+* Content for HTML pages using html editor - <done>
+* Map URLs to Content Pages - <done>
+* Redirect URLs - 301 - <done>
+* Blog editing (wordpress benchmark)
+* Media Embed
     - Image, Css, JS uploads to S3 and ability to embed them to pages
     - Embedded media from popular sites like YouTube, Digg, and Vimeo
-* Sitemap generator
+* Sitemap generator - <done>
 * SEO checker - use seomoz apis
     (Title, URL, Keyword density, meta description)
 * FAQ App with search
 * User Management
     - Users can edit own blogs and admin can access all
     - Users can be given access to only some pages
-* Themes for all pages/blogs/faq - Default theme cannot be deleted
-* Upload theme via admin
+* Themes for all pages/blogs/faq - <done>
+* Import export themes/pages via admin
 * Categories and Popular posts for blogs
 * Draft and Preview for Pages and Blogs
 * Scheduled Publishing for Blogs
@@ -50,35 +49,30 @@
 ## Other Notes
 
 * Cache data
-* Django Templates from DB for static pages and blog
+* Django Templates from DB for static pages and blog - <done>
 * Revision Control
 * Permission Management for Users
 * Organize Static Pages into groups and groups have permissions
 * Blog posts have permissions
-* GA Stats within dashboard - Future
-* Automatic posting of blog to your favorite social networks - Future
-
-
 
 
 ## Entities
 
-* Pages
+* Pages - <done>
   - Meta details
     - Title, Description, Keywords, URL
-  - Choose Template
-  - Fill Content Blocks using WYSIWYG or HTML (formatted)
+  - Edit using Django template structure
   - Page group and Author
   - Show in Sitemap option
-  
+
 * Media Manager
   - Upload media to S3 bucket
   - have alias for media uploaded and url shown
   - Allow addition of media in HTML + blog
-  
-* Redirects
-  - 301 and 302 redirects
-  
+
+* Redirects - <done>
+  - 301 redirects
+
 * Posts
   - Meta details
     - Title, Description, Keywords, URL
@@ -91,7 +85,7 @@
   - Feature Post
   - Main blog listing to show features posts
   - End of posts show related articles from same categories maybe
-  
+
 * FAQ
   - FACK + Django knowledge
 
