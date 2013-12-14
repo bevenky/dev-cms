@@ -30,7 +30,8 @@ ALLOWED_HOSTS = ["127.0.0.1", ]
 # Application definition
 
 INSTALLED_APPS = (
-    'suit',
+    'django_ace',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,8 +39,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'cms',
-    'django_ace',
+    'appearance',
+    'pages',
+    # 'posts',
+    # 'media',
+    'redirects'
+    # 'settings'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,6 +54,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'redirects.middleware.RedirectFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'dev_cms.urls'
@@ -81,6 +88,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+APPEND_SLASH = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -88,68 +97,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-from django.conf.global_settings import TEMPLATE_DIRS
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'templates'),
-)
-
-
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 TEMPLATE_CONTEXT_PROCESSORS += (
-        # 'gnocchi.cms.context.context_variables',
         'django.core.context_processors.request',
     )
 
-# from django.conf.global_settings import TEMPLATE_LOADERS
 
-# TEMPLATE_LOADERS = (
-#         'gnocchi.cms.loaders.Loader',
-#     ) + TEMPLATE_LOADERS
+from django.conf.global_settings import TEMPLATE_LOADERS
 
-
-# DEFAULT_TEMPLATE = 'default.html'
-
-
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Plivo CMS Admin',
-    'CONFIRM_UNSAVED_CHANGES': True,
-    #'MENU_EXCLUDE': ('auth.group', 'auth'),
-    'MENU': (
-
-        # Keep original label and models
-        'sites',
-
-        # Reorder app models
-        {'app': 'auth', 'models': ('user', 'group')},
-
-        # Custom app, with models
-        {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
-
-        # Cross-linked models with custom name; Hide default icon
-        {'label': 'Custom', 'icon':None, 'models': (
-            'auth.group',
-            {'model': 'auth.user', 'label': 'Staff'}
-        )},
-
-        # Custom app, no models (child links)
-        {'label': 'Users', 'url': 'auth.user', 'icon':'icon-user'},
-
-        # Separator
-        '-',
-
-        # Custom app and model with permissions
-        {'label': 'Secure', 'permissions': 'auth.add_user', 'models': [
-            {'label': 'custom-child', 'permissions': ('auth.add_user', 'auth.add_group')}
-        ]},
-    ),
-
-    'LIST_PER_PAGE': 20,
-
-}
-
-
+TEMPLATE_LOADERS = (
+        'dev_cms.loader.DBTemplateLoader',
+    ) + TEMPLATE_LOADERS
