@@ -48,8 +48,9 @@ INSTALLED_APPS = (
     'pages',
     # 'posts',
     # 'media',
-    'redirects'
-    # 'settings'
+    'redirects',
+    # 'settings',
+    'fack',
 )
 
 MIDDLEWARE_CLASSES = (

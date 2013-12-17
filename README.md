@@ -3,8 +3,8 @@
 
 ## User Facing Features
 
-* HTML Pages  - <done>
-* Landing Pages - <done>
+* HTML Pages  - done
+* Landing Pages - done
 * Blogs with comments and sharing on social media
 * FAQ with Search
 * Contact us forms
@@ -20,21 +20,21 @@
 
 ## Admin
 
-* Content for HTML pages using html editor - <done>
-* Map URLs to Content Pages - <done>
-* Redirect URLs - 301 - <done>
+* Content for HTML pages using html editor - done
+* Map URLs to Content Pages - done
+* Redirect URLs - 301 - done
 * Blog editing (wordpress benchmark)
 * Media Embed
     - Image, Css, JS uploads to S3 and ability to embed them to pages
     - Embedded media from popular sites like YouTube, Digg, and Vimeo
-* Sitemap generator - <done>
+* Sitemap generator - done
 * SEO checker - use seomoz apis
     (Title, URL, Keyword density, meta description)
 * FAQ App with search
 * User Management
     - Users can edit own blogs and admin can access all
     - Users can be given access to only some pages
-* Themes for all pages/blogs/faq - <done>
+* Themes for all pages/blogs/faq - done
 * Import export themes/pages via admin
 * Categories and Popular posts for blogs
 * Draft and Preview for Pages and Blogs
@@ -49,7 +49,7 @@
 ## Other Notes
 
 * Cache data
-* Django Templates from DB for static pages and blog - <done>
+* Django Templates from DB for static pages and blog - done
 * Revision Control
 * Permission Management for Users
 * Organize Static Pages into groups and groups have permissions
@@ -58,7 +58,7 @@
 
 ## Entities
 
-* Pages - <done>
+* Pages - done
   - Meta details
     - Title, Description, Keywords, URL
   - Edit using Django template structure
@@ -70,7 +70,7 @@
   - have alias for media uploaded and url shown
   - Allow addition of media in HTML + blog
 
-* Redirects - <done>
+* Redirects - done
   - 301 redirects
 
 * Posts

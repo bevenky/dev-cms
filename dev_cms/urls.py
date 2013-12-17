@@ -40,12 +40,14 @@ urlpatterns += patterns('',
     # Admin URL
     url(r'^admin/', include(admin.site.urls)),
 
-    # All Preview URLs here
-    (r'^preview/(?P<path>.*)$', render_preview_page),
-
     # Sitemap URL
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
+    # FAQ URL
+    url(r'^faq/', include('fack.urls')),
+
+     # All Preview URLs here
+    url(r'^preview/(?P<path>.*)$', render_preview_page),
 
     # All Dynamic URLs caught here
     (r'^(?P<path>.*)$', render_page),

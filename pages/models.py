@@ -21,6 +21,9 @@ class Page(models.Model):
     ''' Actual Pages which use templates and provide content for the blocks
         and map to a URL
     '''
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     url = models.CharField(max_length=512, unique=True, db_index=True,
             help_text = "This should be an absolute url, excluding the domain name. e.g. '/urlpath/actualurl/'")
     preview_url = models.CharField(max_length=512, unique=True)
@@ -29,10 +32,7 @@ class Page(models.Model):
     exclude_from_sitemap = models.BooleanField(default=False, help_text='If True, page will be exlcuded from sitemap')
     sitemap_priority = models.DecimalField(default='0.5', decimal_places=1, max_digits=2)
     content = models.TextField(blank=True)
-    created_at = models.DateTimeField(_('creation at'),
-                                         auto_now_add=True)
-    updated_at = models.DateTimeField(_('updated at'),
-                                        auto_now=True)
+
 
     class Meta:
         verbose_name = _('page')

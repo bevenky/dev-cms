@@ -27,7 +27,7 @@ class CMSIndexDashboard(Dashboard):
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('Content'),
-             models=('posts.*', 'pages.*', 'appearance.*', 'redirects.*'),
+             models=('posts.*', 'pages.*', 'appearance.*', 'redirects.*', 'fack.*'),
         ))
 
         # append an app list module for "Administration"
@@ -93,4 +93,4 @@ class CMSAppIndexDashboard(AppIndexDashboard):
         """
         Use this method if you need to access the request context.
         """
-        return super(CustomAppIndexDashboard, self).init_with_context(context)
+        return super(CMSAppIndexDashboard, self).init_with_context(context)

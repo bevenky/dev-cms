@@ -20,15 +20,15 @@ class Theme(models.Model):
 class Template(models.Model):
     '''A DB backed Django Template
     '''
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     theme = models.ForeignKey(Theme)
     path = models.CharField(max_length=500, db_index=True,
         help_text="Logical path, not a URL e.g. 'theme/folder/template.html'")
     description = models.CharField(max_length=200, blank=True)
     content = models.TextField()
-    created_at = models.DateTimeField(_('creation at'),
-                                         auto_now_add=True)
-    updated_at = models.DateTimeField(_('updated at'),
-                                        auto_now=True)
+
 
     class Meta:
         verbose_name = _('template')
