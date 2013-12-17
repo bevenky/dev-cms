@@ -30,7 +30,7 @@ class CMSMenu(Menu):
             ),
             items.AppList(
                 _('Tools'),
-                models=('redirects.*',)
+                models=('redirects.*', 'reversion.*')
             )
         ]
 

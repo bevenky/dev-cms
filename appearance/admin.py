@@ -5,12 +5,13 @@ from django.db import models
 from models import Template, Theme
 
 from django_ace import AceWidget
+import reversion
 
 
 admin.site.register(Theme)
 
 
-class TemplateAdmin(admin.ModelAdmin):
+class TemplateAdmin(reversion.VersionAdmin):
     list_display = ( 'path', 'theme', 'description' ,'created_at', 'updated_at')
     search_fields = ('path', 'description')
     list_filter = ('theme',)

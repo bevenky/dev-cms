@@ -5,12 +5,13 @@ from django.db import models
 from models import Category, Page
 
 from django_ace import AceWidget
+import reversion
 
 
 admin.site.register(Category)
 
 
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(reversion.VersionAdmin):
 
     def url_link(self):
         return '<a href="/%s">%s</a>' % (self.url.lstrip('/'), self.url)

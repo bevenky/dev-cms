@@ -46,11 +46,14 @@ INSTALLED_APPS = (
 
     'appearance',
     'pages',
+    'redirects',
     # 'posts',
     # 'media',
-    'redirects',
     # 'settings',
+
     'fack',
+    'reversion',
+
 )
 
 MIDDLEWARE_CLASSES = (
