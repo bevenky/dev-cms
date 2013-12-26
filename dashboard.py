@@ -28,7 +28,7 @@ class CMSIndexDashboard(Dashboard):
         self.children.append(modules.AppList(
             _('Content'),
              models=('posts.*', 'pages.*', 'appearance.*', 'redirects.*',
-                    'fack.*',),
+                    'fack.*', 'posts.*'),
         ))
 
         # append an app list module for "Administration"
@@ -38,35 +38,7 @@ class CMSIndexDashboard(Dashboard):
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions(_('Recent Actions'), 14))
-
-
-        # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            _('Navigation'),
-            children=[
-                {
-                    'title': _('Homepage'),
-                    'url': 'http://plivo.com/',
-                    'external': True,
-                },
-                {
-                    'title': _('Pricing'),
-                    'url': 'http://plivo.com/pricing/',
-                    'external': True,
-                },
-                {
-                    'title': _('Docs'),
-                    'url': 'http://plivo.com/docs/',
-                    'external': True,
-                },
-                {
-                    'title': _('Blog'),
-                    'url': 'http://plivo.com/blog/',
-                    'external': True,
-                },
-            ]
-        ))
+        self.children.append(modules.RecentActions(_('Recent Actions'), 20))
 
 
 class CMSAppIndexDashboard(AppIndexDashboard):
@@ -86,7 +58,7 @@ class CMSAppIndexDashboard(AppIndexDashboard):
             modules.RecentActions(
                 _('Recent Actions'),
                 include_list=self.get_app_content_types(),
-                limit=5
+                limit=20
             )
         ]
 

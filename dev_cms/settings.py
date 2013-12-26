@@ -47,7 +47,7 @@ INSTALLED_APPS = (
     'appearance',
     'pages',
     'redirects',
-    # 'posts',
+    'posts',
     # 'media',
     # 'settings',
 
@@ -124,4 +124,10 @@ TEMPLATE_LOADERS = (
 ADMIN_TOOLS_MENU = 'menu.CMSMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'dashboard.CMSIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'dashboard.CMSAppIndexDashboard'
+
+POSTS_PREFIX = 'blog'
+POST_LIST_TEMPLATE = 'list.html'
+POST_CATEGORY_LIST_TEMPLATE = 'category_list.html'
+POST_DETAIL_TEMPLATE = 'detail.html'
+POSTS_PER_PAGE = 10
 

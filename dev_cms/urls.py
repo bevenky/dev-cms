@@ -47,6 +47,9 @@ urlpatterns += patterns('',
     url(r'^faq/', include('fack.urls')),
 
      # All Preview URLs here
+    url(r'^%s/' %settings.POSTS_PREFIX, include('posts.urls')),
+
+     # All Preview URLs here
     url(r'^preview/(?P<path>.*)$', render_preview_page),
 
     # All Dynamic URLs caught here

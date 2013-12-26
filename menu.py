@@ -22,7 +22,8 @@ class CMSMenu(Menu):
             items.MenuItem(_('Dashboard'), reverse('admin:index')),
             items.AppList(
                 _('Content'),
-                models=('posts.*', 'pages.*', 'appearance.*', 'fack.*')
+                models=('posts.*', 'pages.*', 'appearance.*', 'fack.*',
+                        'posts.*')
             ),
             items.AppList(
                 _('Administration'),
