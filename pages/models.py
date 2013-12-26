@@ -4,14 +4,14 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-class Category(models.Model):
-    ''' Category in which pages reside for logical filtering in the admin
+class Section(models.Model):
+    ''' Section in which pages reside for logical filtering in the admin
     '''
     name = models.CharField(max_length=512)
 
     class Meta:
-        verbose_name = _('category')
-        verbose_name_plural = _('categories')
+        verbose_name = _('section')
+        verbose_name_plural = _('sections')
 
     def __unicode__(self):
         return self.name
@@ -27,7 +27,7 @@ class Page(models.Model):
     url = models.CharField(max_length=512, unique=True, db_index=True,
             help_text = "This should be an absolute url, excluding the domain name. e.g. '/urlpath/actualurl/'")
     preview_url = models.CharField(max_length=512, unique=True)
-    category = models.ForeignKey(Category, blank=True, null=True,)
+    section = models.ForeignKey(Section, blank=True, null=True,)
     is_draft = models.BooleanField(default=False, help_text='If True, page will not be made public')
     exclude_from_sitemap = models.BooleanField(default=False, help_text='If True, page will be exlcuded from sitemap')
     sitemap_priority = models.DecimalField(default='0.5', decimal_places=1, max_digits=2)
@@ -37,7 +37,7 @@ class Page(models.Model):
     class Meta:
         verbose_name = _('page')
         verbose_name_plural = _('pages')
-        ordering = ('category',)
+        ordering = ('section',)
 
     def __unicode__(self):
         return u'%s' % (self.url)

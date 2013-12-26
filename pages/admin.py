@@ -2,16 +2,17 @@ from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
 
-from models import Category, Page
+from models import Section, Page
 
 from django_ace import AceWidget
 import reversion
 
 
-admin.site.register(Category)
+admin.site.register(Section)
 
 
 class PageAdmin(reversion.VersionAdmin):
+    save_as = True
 
     def url_link(self):
         return '<a href="/%s">%s</a>' % (self.url.lstrip('/'), self.url)
@@ -22,8 +23,8 @@ class PageAdmin(reversion.VersionAdmin):
     preview_url_link.allow_tags = True
 
 
-    list_display = ('category', url_link , preview_url_link ,'is_draft', 'exclude_from_sitemap')
-    list_filter = ('is_draft', 'exclude_from_sitemap', 'category')
+    list_display = ('section', url_link , preview_url_link ,'is_draft', 'exclude_from_sitemap')
+    list_filter = ('is_draft', 'exclude_from_sitemap', 'section')
     search_fields = ('url', 'preview_url')
     exclude = ('preview_url',)
 
@@ -31,4 +32,5 @@ class PageAdmin(reversion.VersionAdmin):
         models.CharField: {'widget': TextInput(attrs={'size':'50'})},
         models.TextField: {'widget': AceWidget(mode='html', width='1350px', height='450px')},
     }
+
 admin.site.register(Page, PageAdmin)
