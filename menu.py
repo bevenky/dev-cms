@@ -23,7 +23,7 @@ class CMSMenu(Menu):
             items.AppList(
                 _('Content'),
                 models=('posts.*', 'pages.*', 'appearance.*', 'fack.*',
-                        'posts.*')
+                        'posts.*', 'filer.*')
             ),
             items.AppList(
                 _('Administration'),

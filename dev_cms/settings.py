@@ -48,11 +48,13 @@ INSTALLED_APPS = (
     'pages',
     'redirects',
     'posts',
-    # 'media',
-    # 'settings',
 
     'fack',
     'reversion',
+    'django_summernote',
+    'filer',
+    'easy_thumbnails',
+    'storages',
 
 )
 
@@ -131,3 +133,40 @@ POST_CATEGORY_LIST_TEMPLATE = 'category_list.html'
 POST_DETAIL_TEMPLATE = 'detail.html'
 POSTS_PER_PAGE = 10
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
+SUMMERNOTE_CONFIG = {
+    'width': 720,
+    'height': 480,
+    'toolbar': [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['misc', ['codeview']]
+    ],
+    'attachment_upload_to': 'uploaded_filepath',
+    'attachment_storage_class': None,
+    'attachment_filesize_limit': 1024 * 1024,
+}
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+
+FILER_DEBUG = DEBUG
+FILER_ENABLE_LOGGING = True

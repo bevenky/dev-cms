@@ -5,6 +5,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from filer.fields.image import FilerImageField
+
 
 class Category(models.Model):
     ''' Category in which posts reside for logical filtering in the admin
@@ -38,7 +40,7 @@ class Post(models.Model):
                 help_text = "Meta Description for the post")
     meta_keywords = models.CharField(max_length=180,
                 help_text = "Meta Keywords for the post")
-    #preview_image =
+    preview_image = FilerImageField(null=True, blank=True)
     preview_text = models.TextField(blank=True,
                 help_text = "Preview text which shows up in the listing of posts")
     publish_time = models.DateTimeField(default=datetime.now,
@@ -48,8 +50,7 @@ class Post(models.Model):
     sitemap_priority = models.DecimalField(default='0.5', decimal_places=1, max_digits=2)
     post_ranking = models.IntegerField(default=1,
             help_text="ranking based on which the post will show up in top posts list")
-    #related_posts
-
+    related_posts = models.ManyToManyField('self', blank=True, null=True,)
     content = models.TextField(blank=True,
                 help_text="Actual content goes here. Preview text -{# previewend #}")
 
