@@ -46,6 +46,9 @@ urlpatterns += patterns('',
     # FAQ URL
     url(r'^faq/', include('fack.urls')),
 
+    # WYSIWYG
+    (r'^summernote/', include('django_summernote.urls')),
+
      # All Preview URLs here
     url(r'^%s/' %settings.POSTS_PREFIX, include('posts.urls')),
 
