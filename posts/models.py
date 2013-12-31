@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 from filer.fields.image import FilerImageField
+from import_export import resources
 
 
 class Category(models.Model):
@@ -19,6 +20,12 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class CategoryResource(resources.ModelResource):
+
+    class Meta:
+        model = Category
 
 
 class Post(models.Model):
@@ -73,3 +80,9 @@ class Post(models.Model):
         self.preview_text = self.content.split("{# previewend #}")[0][:499]
         super(Post, self).save(*args, **kwargs)
 
+
+
+class PostResource(resources.ModelResource):
+
+    class Meta:
+        model = Post

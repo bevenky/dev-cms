@@ -5,15 +5,19 @@ from django.forms import TextInput, Textarea
 
 from django_summernote.widgets import SummernoteWidget
 
-from models import Category, Post
-
+from models import Category, CategoryResource, Post, PostResource
+from import_export.admin import ImportExportModelAdmin
 import reversion
 
 
-admin.site.register(Category)
+class CategoryAdmin(ImportExportModelAdmin):
+    resource_class = CategoryResource
+
+admin.site.register(Category, CategoryAdmin)
 
 
-class PostAdmin(reversion.VersionAdmin):
+class PostAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = PostResource
     save_as = True
 
     def url_link(self):

@@ -3,6 +3,8 @@ import random, string
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from import_export import resources
+
 
 class Theme(models.Model):
     ''' Theme in which templates reside for logical filtering in the admin
@@ -15,6 +17,12 @@ class Theme(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class ThemeResource(resources.ModelResource):
+
+    class Meta:
+        model = Theme
 
 
 class Template(models.Model):
@@ -38,3 +46,8 @@ class Template(models.Model):
     def __unicode__(self):
         return u'%s - %s'  % (self.theme, self.path)
 
+
+class TemplateResource(resources.ModelResource):
+
+    class Meta:
+        model = Template

@@ -4,8 +4,11 @@ from models import Page
 
 
 def render_page(request, path):
-    page_url =  path.strip('/')
-    page_url = "/%s/" % page_url
+    if path == "":
+        page_url = "/"
+    else:
+        page_url =  path.strip('/')
+        page_url = "/%s/" % page_url
     if request.user.is_authenticated():
         page = get_object_or_404(Page, url=page_url)
     else:

@@ -2,16 +2,21 @@ from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
 
-from models import Section, Page
+from models import Section, SectionResource, Page, PageResource
 
 from django_ace import AceWidget
+from import_export.admin import ImportExportModelAdmin
 import reversion
 
 
-admin.site.register(Section)
+class SectionAdmin(ImportExportModelAdmin):
+    resource_class = SectionResource
+
+admin.site.register(Section, SectionAdmin)
 
 
-class PageAdmin(reversion.VersionAdmin):
+class PageAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = PageResource
     save_as = True
 
     def url_link(self):

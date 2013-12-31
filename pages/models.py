@@ -3,6 +3,8 @@ import random, string
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from import_export import resources
+
 
 class Section(models.Model):
     ''' Section in which pages reside for logical filtering in the admin
@@ -15,6 +17,12 @@ class Section(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class SectionResource(resources.ModelResource):
+
+    class Meta:
+        model = Section
 
 
 class Page(models.Model):
@@ -46,12 +54,19 @@ class Page(models.Model):
         return ''.join(random.sample(string.lowercase+string.digits,10))
 
     def save(self, *args, **kwargs):
-        self.url = self.url.strip('/')
-        self.url = "/%s/" % self.url
+        self.url = self.url.strip(' ')
+        if self.url != "/":
+            self.url = self.url.strip('/')
+            self.url = "/%s/" % self.url
         self.preview_url = "/preview/%s%s" % (self.gen_preview_prefix(), self.url)
         super(Page, self).save(*args, **kwargs)
 
 
+
+class PageResource(resources.ModelResource):
+
+    class Meta:
+        model = Page
 
 
 
