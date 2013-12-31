@@ -15,4 +15,4 @@ class PagesSitemap(Sitemap):
         return obj.created_at
 
     def location(self, obj):
-        return "/%s" % obj.url
+        return "%s" % obj.url
