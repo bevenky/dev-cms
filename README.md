@@ -5,7 +5,6 @@
 
 * Add Templates
 * Add search to FAQ
-* Change Filer location for S3 in settings
 
 * Posts
   - disqus comments
@@ -27,7 +26,7 @@
 * Add Caching
   - Caching should not fail if cache down
 * Deploy scripts for AWS
-* Test cases and CI Integration
+
 
 
 ## Roadmap
@@ -43,3 +42,5 @@
 * User Management
     - Users can edit own blogs and admin role can access all
     - Users can be given access to only some pages sections
+* Change Filer location for S3 in settings
+* Test cases and CI Integration

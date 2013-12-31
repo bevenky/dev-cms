@@ -44,18 +44,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'reversion',
+    'django_summernote',
+    'storages',
+    'easy_thumbnails',
+    'filer',
+    'import_export',
+    'fack',
+
     'appearance',
     'pages',
     'redirects',
     'posts',
-
-    'fack',
-    'reversion',
-    'django_summernote',
-    'filer',
-    'easy_thumbnails',
-    'storages',
-
 )
 
 MIDDLEWARE_CLASSES = (
@@ -138,7 +138,8 @@ AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = ''
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+if not DEBUG:
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 SUMMERNOTE_CONFIG = {
