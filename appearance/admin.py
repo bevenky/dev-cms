@@ -14,15 +14,16 @@ from import_export import resources
 class ThemeAdmin(ImportExportModelAdmin):
     resource_class = ThemeResource
 
-admin.site.register(Theme, ThemeAdmin)
+# admin.site.register(Theme, ThemeAdmin)
 
 
 class TemplateAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = TemplateResource
     save_as = True
 
-    list_display = ( 'path', 'theme', 'description' ,'created_at', 'updated_at')
+    list_display = ( 'path', 'description' ,'created_at', 'updated_at')
     search_fields = ('path', 'description')
+    exclude = ('theme',)
     list_filter = ('theme',)
 
     formfield_overrides = {

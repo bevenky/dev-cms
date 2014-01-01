@@ -27,7 +27,7 @@ class CMSIndexDashboard(Dashboard):
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('Content'),
-             models=('posts.*', 'pages.*', 'fack.*', 'redirects.*'),
+             models=('appearance.*','posts.*', 'pages.*', 'fack.*', 'redirects.*'),
         ))
 
         # append a recent actions module
