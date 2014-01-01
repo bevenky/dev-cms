@@ -39,6 +39,15 @@ def render_category_listing(request, category):
     return render_to_response(template_name, {"posts": posts, "category": category})
 
 
+def render_author_listing(request, author):
+    author = author.strip('/')
+    template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_AUTHOR_LIST_TEMPLATE)
+    total_posts = Post.objects.filter(user__name=author,
+                            is_draft=False, publish_time__gte=datetime.now())
+    posts = paginate(request, total_posts)
+    return render_to_response(template_name, {"posts": posts, "author": author})
+
+
 def render_post(request, path):
     page_url =  path.strip('/')
     page_url = "/%s/" % page_url

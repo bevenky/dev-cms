@@ -12,6 +12,9 @@ urlpatterns = patterns('',
     # Category Listing URL
     url(r'^category/(?P<category>.*)$', render_category_listing),
 
+    # Author Listing URL
+    url(r'^author/(?P<author>.*)$', render_author_listing),
+
     # All Preview URLs here
     url(r'^preview/(?P<path>.*)$', render_preview_post),
 
