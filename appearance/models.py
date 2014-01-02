@@ -31,8 +31,8 @@ class Template(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    theme = models.ForeignKey(Theme)
-    path = models.CharField(max_length=500, db_index=True,
+    theme = models.ForeignKey(Theme, blank=True, null=True)
+    path = models.CharField(max_length=500, unique=True, db_index=True,
         help_text="Logical path, not a URL e.g. 'theme/folder/template.html'")
     description = models.CharField(max_length=200, blank=True)
     content = models.TextField()

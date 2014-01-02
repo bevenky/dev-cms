@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db import models
 from django.forms import TextInput, Textarea
 
-from django_summernote.widgets import SummernoteWidget
+from ckeditor.widgets import CKEditorWidget
 
 from models import Category, CategoryResource, Post, PostResource
 from import_export.admin import ImportExportModelAdmin
@@ -38,7 +38,7 @@ class PostAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'100'})},
-        models.TextField: {'widget': SummernoteWidget()},
+        models.TextField: {'widget': CKEditorWidget(config_name='default')},
     }
 
 admin.site.register(Post, PostAdmin)

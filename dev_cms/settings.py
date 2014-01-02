@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'reversion',
-    'django_summernote',
+    'ckeditor',
     'storages',
     'easy_thumbnails',
     'filer',
@@ -133,8 +133,7 @@ POST_CATEGORY_LIST_TEMPLATE = 'category_list.html'
 POST_AUTHOR_LIST_TEMPLATE = 'author_list.html'
 POST_DETAIL_TEMPLATE = 'detail.html'
 POSTS_PER_PAGE = 10
-THUMBNAIL_PREVIEW_HIEGHT = 200
-THUMBNAIL_PREVIEW_WIDTH = 200
+POPULAR_POSTS = 7
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = ''
@@ -145,23 +144,21 @@ if not DEBUG:
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
-SUMMERNOTE_CONFIG = {
-    'width': 720,
-    'height': 480,
-    'toolbar': [
-        ['style', ['style']],
-        ['font', ['bold', 'italic', 'underline', 'clear']],
-        ['fontsize', ['fontsize']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['height', ['height']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture', 'video']],
-        ['misc', ['codeview']]
-    ],
-    'attachment_upload_to': 'uploaded_filepath',
-    'attachment_storage_class': None,
-    'attachment_filesize_limit': 1024 * 1024,
+CKEDITOR_UPLOAD_PATH = "static_media"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Full': [
+        ['Styles', 'Format', 'Bold', 'Italic', 'Block Quote', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
+        ['Image', 'Table', 'HorizontalRule'],
+        ['TextColor', 'BGColor'], ['Link', 'Unlink', 'Anchor'],
+        ['Smiley', 'SpecialChar'], ['Maximize','Source'],
+        ],
+        'toolbar': 'Full',
+        'height': 800,
+        'width': 1200,
+
+    },
 }
 
 THUMBNAIL_PROCESSORS = (

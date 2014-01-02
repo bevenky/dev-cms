@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from models import Post
+from models import Post, Category
 
 from datetime import datetime
 
@@ -25,27 +25,38 @@ def paginate(request, obj_list):
 
 def render_post_listing(request):
     template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_LIST_TEMPLATE)
-    total_posts = Post.objects.filter(is_draft=False, publish_time__gte=datetime.now())
+    total_posts = Post.objects.filter(is_draft=False, publish_time__lte=datetime.now())
     posts = paginate(request, total_posts)
-    return render_to_response(template_name, {"posts": posts})
+    categories = Category.objects.all()
+    popular_posts = Post.objects.all().order_by()[:settings.POPULAR_POSTS]
+    return render_to_response(template_name, {"posts": posts, "categories": categories,
+                                            'popular_posts': popular_posts})
 
 
 def render_category_listing(request, category):
     category = category.strip('/')
     template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_CATEGORY_LIST_TEMPLATE)
     total_posts = Post.objects.filter(category__name=category,
-                            is_draft=False, publish_time__gte=datetime.now())
+                            is_draft=False, publish_time__lte=datetime.now())
     posts = paginate(request, total_posts)
-    return render_to_response(template_name, {"posts": posts, "category": category})
+    categories = Category.objects.all()
+    popular_posts = Post.objects.all().order_by()[:settings.POPULAR_POSTS]
+    return render_to_response(template_name, {"posts": posts, "categories": categories,
+                                                "category": category,
+                                                'popular_posts': popular_posts
+                                                })
 
 
 def render_author_listing(request, author):
     author = author.strip('/')
     template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_AUTHOR_LIST_TEMPLATE)
-    total_posts = Post.objects.filter(user__name=author,
-                            is_draft=False, publish_time__gte=datetime.now())
+    total_posts = Post.objects.filter(author__username=author,
+                            is_draft=False, publish_time__lte=datetime.now())
     posts = paginate(request, total_posts)
-    return render_to_response(template_name, {"posts": posts, "author": author})
+    categories = Category.objects.all()
+    popular_posts = Post.objects.all().order_by('post_ranking')[:settings.POPULAR_POSTS]
+    return render_to_response(template_name, {"posts": posts, "categories": categories,
+                                        "author": author, 'popular_posts': popular_posts})
 
 
 def render_post(request, path):
@@ -55,16 +66,21 @@ def render_post(request, path):
         post = get_object_or_404(Post, url=page_url)
     else:
         post = get_object_or_404(Post, url=page_url, is_draft=False,
-                                publish_time__gte=datetime.now())
+                                publish_time__lte=datetime.now())
     template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_DETAIL_TEMPLATE)
-
+    categories = Category.objects.all()
+    popular_posts = Post.objects.all().order_by('post_ranking')[:settings.POPULAR_POSTS]
     return render_to_response(template_name,
-                            {"post": post})
+                            {"post": post, "categories": categories,
+                            'popular_posts': popular_posts})
 
 
 def render_preview_post(request, path):
     page_url = "/preview/%s" % path
     page = get_object_or_404(Post, preview_url=page_url)
     template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_DETAIL_TEMPLATE)
+    categories = Category.objects.all()
+    popular_posts = Post.objects.all().order_by('post_ranking')[:settings.POPULAR_POSTS]
     return render_to_response(template_name,
-                            {"post": post})
+                            {"post": post, "categories": categories,
+                            'popular_posts': popular_posts})

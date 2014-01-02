@@ -47,7 +47,8 @@ urlpatterns += patterns('',
     url(r'^faq/', include('fack.urls')),
 
     # WYSIWYG
-    (r'^summernote/', include('django_summernote.urls')),
+    url(r'^ckeditor/upload/', 'ckeditor.views.upload', name='ckeditor_upload'),
+    url(r'^ckeditor/browse/', 'ckeditor.views.browse', name='ckeditor_browse'),
 
      # All Preview URLs here
     url(r'^%s/' %settings.POSTS_PREFIX, include('posts.urls')),

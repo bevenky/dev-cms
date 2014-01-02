@@ -23,7 +23,7 @@ class TemplateAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
     list_display = ( 'path', 'description' ,'created_at', 'updated_at')
     search_fields = ('path', 'description')
-    exclude = ('theme',)
+    # exclude = ('theme',)
     list_filter = ('theme',)
 
     formfield_overrides = {

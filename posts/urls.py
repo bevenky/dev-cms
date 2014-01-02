@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.http import HttpResponse
 
-from views import render_post, render_preview_post, render_post_listing, render_category_listing
+from views import render_post, render_preview_post, render_post_listing, render_category_listing, render_author_listing
 
 
 urlpatterns = patterns('',

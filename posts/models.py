@@ -55,8 +55,8 @@ class Post(models.Model):
     exclude_from_sitemap = models.BooleanField(default=False,
             help_text='If True, page will be exlcuded from sitemap')
     sitemap_priority = models.DecimalField(default='0.5', decimal_places=1, max_digits=2)
-    post_ranking = models.IntegerField(default=1,
-            help_text="ranking based on which the post will show up in top posts list")
+    post_ranking = models.IntegerField(default=10,
+            help_text="ranking based on which the post will show up in top posts list - lower is better")
     related_posts = models.ManyToManyField('self', blank=True, null=True,)
     content = models.TextField(blank=True,
                 help_text="Actual content goes here. Preview text -{# previewend #}")
