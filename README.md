@@ -8,11 +8,16 @@
 
 * Posts
   - disqus comments
-  - sharing on social media
   - Ability to embed Images and media to Posts
-  - Full screen for summernote
-  - Allow adding Images from media library from summernote
-  - Upgrade summernote to latest version 5
+* Pages
+  - Add Images, Videos from editor
+* Add Caching
+  - Caching should not fail if cache down
+* Deploy scripts for AWS
+
+
+## Roadmap
+
 * Contact us forms
   - Sales
   - Support
@@ -21,16 +26,6 @@
   - Marketing Material Download
   - Landing Pages
   - Signup as a user
-* Pages
-  - Add Images, Videos from editor
-* Add Caching
-  - Caching should not fail if cache down
-* Deploy scripts for AWS
-
-
-
-## Roadmap
-
 * SEO checker - use seomoz apis
     (Title, URL, Keyword density, meta description)
 * Copy checker
