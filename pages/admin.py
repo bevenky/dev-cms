@@ -35,7 +35,7 @@ class PageAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'50'})},
-        models.TextField: {'widget': AceWidget(mode='html', width='1350px', height='450px')},
+        models.TextField: {'widget': AceWidget(mode='html', width='750px', height='700px')},
     }
 
 admin.site.register(Page, PageAdmin)
