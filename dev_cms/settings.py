@@ -1,15 +1,7 @@
-"""
-Django settings for dev_cms project.
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS, TEMPLATE_LOADERS, MEDIA_ROOT
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -84,15 +76,9 @@ APPEND_SLASH = True
 
 STATIC_URL = '/static/'
 
-
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
-
 TEMPLATE_CONTEXT_PROCESSORS += (
         'django.core.context_processors.request',
     )
-
-
-from django.conf.global_settings import TEMPLATE_LOADERS
 
 TEMPLATE_LOADERS = (
         'dev_cms.loader.DBTemplateLoader',
@@ -107,6 +93,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates').replace('\\','/'),
 )
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 SUIT_CONFIG = {
     # header
@@ -146,6 +133,7 @@ THUMBNAIL_PROCESSORS = (
 
 FILER_DEBUG = DEBUG
 FILER_ENABLE_LOGGING = True
+FILER_STORAGES = { 'public': { 'main': { 'UPLOAD_TO_PREFIX': 'assets'} } }
 
 
 # dev-cms config below
