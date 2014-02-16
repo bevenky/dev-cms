@@ -2,7 +2,6 @@
 
 ## phase 1 - To be done before basic release
 
-* Change Filer location for S3 in settings
 * Add spell check and blockquote
 * Add ace to ckeditor
 * Add base blog support - ability to use the cms as only a blog
