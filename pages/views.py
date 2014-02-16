@@ -3,12 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from models import Page
 
 
-def render_page(request, path):
-    if path == "":
+def render_page(request, path=None):
+    if not path:
         page_url = "/"
     else:
-        page_url =  path.strip('/')
-        page_url = "/%s/" % page_url
+        page_url = path.strip('/')
+        page_url = "%s/" % page_url
     if request.user.is_authenticated():
         page = get_object_or_404(Page, url=page_url)
     else:

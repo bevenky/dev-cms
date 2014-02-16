@@ -24,7 +24,7 @@ def paginate(request, obj_list):
 
 
 def render_post_listing(request):
-    template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_LIST_TEMPLATE)
+    template_name = "%s/%s" %(settings.POSTS_TEMPLATE_PREFIX, settings.POST_LIST_TEMPLATE)
     total_posts = Post.objects.filter(is_draft=False, publish_time__lte=datetime.now())
     posts = paginate(request, total_posts)
     categories = Category.objects.all()
@@ -35,7 +35,7 @@ def render_post_listing(request):
 
 def render_category_listing(request, category):
     category = category.strip('/')
-    template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_CATEGORY_LIST_TEMPLATE)
+    template_name = "%s/%s" %(settings.POSTS_TEMPLATE_PREFIX, settings.POST_CATEGORY_LIST_TEMPLATE)
     total_posts = Post.objects.filter(category__name=category,
                             is_draft=False, publish_time__lte=datetime.now())
     posts = paginate(request, total_posts)
@@ -49,7 +49,7 @@ def render_category_listing(request, category):
 
 def render_author_listing(request, author):
     author = author.strip('/')
-    template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_AUTHOR_LIST_TEMPLATE)
+    template_name = "%s/%s" %(settings.POSTS_TEMPLATE_PREFIX, settings.POST_AUTHOR_LIST_TEMPLATE)
     total_posts = Post.objects.filter(author__username=author,
                             is_draft=False, publish_time__lte=datetime.now())
     posts = paginate(request, total_posts)
@@ -61,13 +61,13 @@ def render_author_listing(request, author):
 
 def render_post(request, path):
     page_url =  path.strip('/')
-    page_url = "/%s/" % page_url
+    page_url = "%s/" % page_url
     if request.user.is_authenticated():
         post = get_object_or_404(Post, url=page_url)
     else:
         post = get_object_or_404(Post, url=page_url, is_draft=False,
                                 publish_time__lte=datetime.now())
-    template_name = "%s/%s" %(settings.POSTS_PREFIX, settings.POST_DETAIL_TEMPLATE)
+    template_name = "%s/%s" %(settings.POSTS_TEMPLATE_PREFIX, settings.POST_DETAIL_TEMPLATE)
     categories = Category.objects.all()
     popular_posts = Post.objects.all().order_by('post_ranking')[:settings.POPULAR_POSTS]
     return render_to_response(template_name,

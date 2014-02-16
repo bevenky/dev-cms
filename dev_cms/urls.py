@@ -33,6 +33,7 @@ else:
     )
 
 
+
 urlpatterns += patterns('',
     # Admin-tools URL
     url(r'^admin_tools/', include('admin_tools.urls')),
@@ -47,17 +48,23 @@ urlpatterns += patterns('',
     url(r'^faq/', include('fack.urls')),
 
     # WYSIWYG
-    url(r'^ckeditor/upload/', 'ckeditor.views.upload', name='ckeditor_upload'),
-    url(r'^ckeditor/browse/', 'ckeditor.views.browse', name='ckeditor_browse'),
+    url(r'^ckeditor/upload/$', 'ckeditor.views.upload', name='ckeditor_upload'),
+    url(r'^ckeditor/browse/$', 'ckeditor.views.browse', name='ckeditor_browse'),
 
      # All Preview URLs here
-    url(r'^%s/' %settings.POSTS_PREFIX, include('posts.urls')),
+    url(r'^%s/' % settings.POSTS_URL_PREFIX, include('posts.urls')),
 
      # All Preview URLs here
     url(r'^preview/(?P<path>.*)$', render_preview_page),
 
+    # Dirty hack - Only called in the case where blog is at root domain
+    url(r'^$', render_page),
+
     # All Dynamic URLs caught here
-    (r'^(?P<path>.*)$', render_page),
+    url(r'^(?P<path>.*)/$', render_page),
 
 )
+
+
+
 

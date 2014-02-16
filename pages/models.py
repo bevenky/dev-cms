@@ -29,6 +29,7 @@ class Page(models.Model):
     ''' Actual Pages which use templates and provide content for the blocks
         and map to a URL
     '''
+    # name = models.CharField(max_length=512, help_text = "Name of the page")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -57,8 +58,8 @@ class Page(models.Model):
         self.url = self.url.strip(' ')
         if self.url != "/":
             self.url = self.url.strip('/')
-            self.url = "/%s/" % self.url
-        self.preview_url = "/preview/%s%s" % (self.gen_preview_prefix(), self.url)
+            self.url = "%s/" % self.url
+        self.preview_url = "preview/%s%s" % (self.gen_preview_prefix(), self.url)
         super(Page, self).save(*args, **kwargs)
 
 

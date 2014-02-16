@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
+from django.conf import settings
 
 from models import Section, SectionResource, Page, PageResource
 
@@ -11,6 +12,7 @@ import reversion
 
 class SectionAdmin(ImportExportModelAdmin):
     resource_class = SectionResource
+    formats = settings.IMPORT_EXPORT_FORMATS
 
 admin.site.register(Section, SectionAdmin)
 
@@ -18,13 +20,14 @@ admin.site.register(Section, SectionAdmin)
 class PageAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = PageResource
     save_as = True
+    formats = settings.IMPORT_EXPORT_FORMATS
 
     def url_link(self):
-        return '<a href="/%s">%s</a>' % (self.url.lstrip('/'), self.url)
+        return '<a href="/%s">View</a>' % self.url.lstrip('/')
     url_link.allow_tags = True
 
     def preview_url_link(self):
-        return '<a href="/%s">%s</a>' % (self.preview_url.lstrip('/'), self.preview_url)
+        return '<a href="/%s">View</a>' % self.preview_url.lstrip('/')
     preview_url_link.allow_tags = True
 
 

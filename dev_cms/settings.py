@@ -1,5 +1,7 @@
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS, TEMPLATE_LOADERS, MEDIA_ROOT
 
+from import_export.formats import base_formats
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -41,8 +43,8 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -138,11 +140,15 @@ FILER_DEBUG = DEBUG
 FILER_ENABLE_LOGGING = True
 FILER_STORAGES = { 'public': { 'main': { 'UPLOAD_TO_PREFIX': 'assets'} } }
 
+# import - export - formats
+IMPORT_EXPORT_FORMATS = (base_formats.JSON,)
+
 
 # dev-cms config below
 
 ## posts config
-POSTS_PREFIX = 'blog'
+POSTS_URL_PREFIX = 'blog'
+POSTS_TEMPLATE_PREFIX = 'blog'
 POST_LIST_TEMPLATE = 'list.html'
 POST_CATEGORY_LIST_TEMPLATE = 'category_list.html'
 POST_AUTHOR_LIST_TEMPLATE = 'author_list.html'

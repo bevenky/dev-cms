@@ -12,6 +12,7 @@ import reversion
 
 class CategoryAdmin(ImportExportModelAdmin):
     resource_class = CategoryResource
+    formats = settings.IMPORT_EXPORT_FORMATS
 
 admin.site.register(Category, CategoryAdmin)
 
@@ -19,13 +20,14 @@ admin.site.register(Category, CategoryAdmin)
 class PostAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = PostResource
     save_as = True
+    formats = settings.IMPORT_EXPORT_FORMATS
 
     def url_link(self):
-        return '<a href="/%s/%s">View</a>' % (settings.POSTS_PREFIX, self.url.lstrip('/'))
+        return '<a href="/%s/%s">View</a>' % (settings.POSTS_URL_PREFIX, self.url.lstrip('/'))
     url_link.allow_tags = True
 
     def preview_url_link(self):
-        return '<a href="/%s/%s">View</a>' % (settings.POSTS_PREFIX, self.preview_url.lstrip('/'))
+        return '<a href="/%s/%s">View</a>' % (settings.POSTS_URL_PREFIX, self.preview_url.lstrip('/'))
     preview_url_link.allow_tags = True
 
 
