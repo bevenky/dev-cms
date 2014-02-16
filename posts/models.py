@@ -76,7 +76,7 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.url = self.url.strip('/')
         self.url = "%s/" % self.url
-        self.preview_url = "preview/%s%s" % (self.gen_preview_prefix(), self.url)
+        self.preview_url = "preview/%s/%s" % (self.gen_preview_prefix(), self.url)
         self.preview_text = self.content.split("{# previewend #}")[0][:499]
         super(Post, self).save(*args, **kwargs)
 

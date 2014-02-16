@@ -17,7 +17,7 @@ def render_page(request, path=None):
 
 
 def render_preview_page(request, path):
-    page_url = "/preview/%s" % path
+    page_url = "preview/%s" % path
     page = get_object_or_404(Page, preview_url=page_url)
     return render(request, page_url)
 

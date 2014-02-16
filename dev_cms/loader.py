@@ -11,7 +11,7 @@ class DBTemplateLoader(BaseLoader):
 
     def load_template_source(self, template_name, template_dirs=None):
         try:
-            if template_name.startswith('/preview/'):
+            if template_name.startswith('preview/'):
                 page = Page.objects.get(preview_url__exact=template_name)
             else:
                 page = Page.objects.get(url__exact=template_name)
