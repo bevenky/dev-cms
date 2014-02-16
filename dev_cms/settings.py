@@ -112,13 +112,16 @@ CKEDITOR_UPLOAD_PATH = "static_media"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar_Full': [
-        ['Format', 'Bold', 'Italic', 'BlockQuote', 'Underline', 'Strike', 'SpellChecker'],
+        ['Format', 'Bold', 'Italic', 'Underline', 'Strike'],
+        ['Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', ],
+        ['NumberedList', 'BulletedList'],
         ['Image', 'Table', 'HorizontalRule'],
         ['TextColor', 'BGColor'], ['Link', 'Unlink', 'Anchor'], ['Maximize','Source'],
         ],
         'toolbar': 'Full',
         'height': 500,
         'width': 750,
+        'scayt_autoStartup': 'true',
     },
 }
 
